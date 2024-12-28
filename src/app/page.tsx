@@ -1,10 +1,13 @@
 import Image from "next/image";
-import { queryAsync } from "@/lib/queryAsync";
 
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  const tables = await queryAsync("select *, CURRENT_TIMESTAMP() as timestamp from nba_box_scores.main.box_scores order by points desc limit 1");
+    // Server-side fetch of the data from our route handler
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/query`, {
+      cache: 'no-cache'
+    });
+    const tables = await res.json();
   
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
