@@ -1,6 +1,9 @@
 import Image from "next/image";
+import { queryAsync } from "@/lib/queryAsync";
 
-export default function Home() {
+export default async function Home() {
+  const tables = await queryAsync("SHOW ALL TABLES");
+  
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
@@ -12,6 +15,20 @@ export default function Home() {
           height={38}
           priority
         />
+        
+        <div className="w-full max-w-2xl">
+          <h2 className="text-xl font-bold mb-4">Database Tables</h2>
+          <div className="bg-black/[.05] dark:bg-white/[.06] p-4 rounded-lg">
+            {tables.length === 0 ? (
+              <p>No tables found</p>
+            ) : (
+              <pre className="overflow-x-auto">
+                {JSON.stringify(tables, null, 2)}
+              </pre>
+            )}
+          </div>
+        </div>
+
         <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2">
             Get started by editing{" "}
