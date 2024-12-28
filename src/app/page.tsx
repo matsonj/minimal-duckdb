@@ -2,7 +2,7 @@ import Image from "next/image";
 import { queryAsync } from "@/lib/queryAsync";
 
 export default async function Home() {
-  const tables = await queryAsync("select * from box_scores order by points desc limit 1");
+  const tables = await queryAsync("select * from nba_box_scores.main.box_scores order by points desc limit 1");
   
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
