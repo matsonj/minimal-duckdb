@@ -6,7 +6,6 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    // You can read the query from the request body, or hard-code it, etc.
     const result = await queryAsync(
       'SELECT *, current_date AS ts FROM nba_box_scores.main.box_scores LIMIT 1;'
     );
