@@ -9,7 +9,8 @@ declare module 'duckdb-lambda-x86' {
   }
   
   export class Connection {
-      all(sql: string): Array<object>;
+      // eslint-disable-next-line @typescript-eslint/no-wrapper-object-types
+      all(sql: string, callback: (err: Error | null, rows: Array<Object>) => void): void;
       exec(sql: string): void;
       close(): void;
   }

@@ -1,8 +1,0 @@
-{
-    "functions": {
-      "src/pages/api/**/*.ts": {
-        "includeFiles": "node_modules/@duckdb/node-bindings-linux-x64/duckdb.node"
-      }
-    }
-  }
-  
