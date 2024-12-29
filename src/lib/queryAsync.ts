@@ -1,15 +1,10 @@
 "use server";
-
-// Instead of a static import, we do NOT import '@duckdb/node-api' at the top.
-// That way, Next.js won't try to bundle it during build.
+import { DuckDBInstance } from '@duckdb/node-api';
 
 export async function queryAsync(stmt: string): Promise<Array<object>> {
   if (!stmt) {
     return [];
   }
-
-  // 1) Dynamically import DuckDB. This happens at runtime, on the server.
-  const { DuckDBInstance } = await import('@duckdb/node-api');
 
   // 2) If needed, set HOME env for DuckDB.
   process.env.HOME = '/tmp';
